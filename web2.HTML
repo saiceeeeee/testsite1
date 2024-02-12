@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VALENTINE'S DAY</title>
+<link rel="icon" type="image/png" sizes="100%" href="https://cdn-icons-png.flaticon.com/512/9444/9444300.png">
+<link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Barriecito', cursive; /* Use Barriecito font */
+  background-image: url('https://i.imgur.com/373gyk8.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#valentineMessage {
+  font-family: 'Barriecito', cursive;
+  font-size: 5em;
+  color: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  overflow: hidden; /* Ensures text doesn't overflow during animation */
+  white-space: nowrap; /* Ensures text doesn't wrap during animation */
+  animation: typewriter 4s steps(20) 1s forwards; /* Adjust duration and steps as needed */
+}
+
+#valentineLine2 {
+  display: block;
+  font-size: 0.6em;
+  margin-top: 0.5em; /* Adjust as needed */
+}
+
+button {
+  font-size: 20px;
+  padding: 15px 30px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #5D3FD3; /* Dark purple */
+  border: none;
+  border-radius: 10px;
+  color: white;
+  position: fixed;
+  bottom: 20%;
+}
+
+#Button1 {
+  left: calc(50% - 140px);
+}
+
+#Button2 {
+  left: calc(50% + 20px);
+}
+
+#gifContainer {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  min-height: 100vh;
+}
+</style>
+</head>
+<body>
+
+<div id="gifContainer"></div>
+<div id="valentineMessage">Will you be my Valentine?</div>
+<button id="Button1">Yes!</button>
+<button id="Button2">No</button>
+
+<script>
+document.getElementById('Button1').addEventListener('click', function() {
+  var img = document.createElement('img');
+  img.src = "https://i.imgur.com/9IzmcWR.gif" + "?x=" + new Date().getTime();
+  img.style.position = 'absolute';
+  img.style.top = '50%';
+  img.style.left = '52%';
+  img.style.transform = 'translate(-50%, -50%)';
+  img.style.maxWidth = '130%'; /* Increase width by 30% */
+  img.style.height = 'auto';
+  img.setAttribute('id', 'valentineGif');
+
+  var container = document.getElementById('gifContainer');
+  container.innerHTML = '';
+  container.appendChild(img);
+
+  // Hide only the text after clicking "Yes"
+  document.getElementById('valentineMessage').style.display = 'none';
+  // Hide the buttons after clicking "Yes"
+  document.getElementById('Button1').style.display = 'none';
+  document.getElementById('Button2').style.display = 'none';
+  
+  // Reload the GIF every 2500 milliseconds
+  setInterval(function() {
+    var gif = document.getElementById('valentineGif');
+    gif.src = gif.src + '?x=' + new Date().getTime();
+  }, 2500);
+});
+
+const button2 = document.getElementById('Button2');
+button2.addEventListener('mouseover', function() {
+    const viewportWidth = window.innerWidth;
+    let newX = Math.random() * (viewportWidth - this.offsetWidth);
+    this.style.left = `${newX}px`;
+});
+</script>
+</body>
+</html>
